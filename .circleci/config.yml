@@ -36,5 +36,9 @@ jobs:
       # run tests!
       - run: yarn test
 
+      - store_artifacts:
+          path: tests/coverage/
+
+      # duplicate of store_artifacts because circle 2.0 doesn't seem to support this option fully yet for html coverage
       - store_test_results:
           path: tests/coverage/
