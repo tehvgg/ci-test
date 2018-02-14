@@ -3,6 +3,7 @@ jobs:
   install:
     docker:
       - image: circleci/node:8.9.4
+    working_directory: ~/ci-test
     steps:
       - checkout
       - run: yarn install
@@ -13,6 +14,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:8.9.4
+    working_directory: ~/ci-test
     steps:
       - checkout
       - restore_cache:
@@ -26,6 +28,7 @@ jobs:
   test:
     docker:
       - image: circleci/node:8.9.4
+    working_directory: ~/ci-test
     steps:
       - checkout
       - restore_cache:
@@ -39,6 +42,7 @@ jobs:
   lint:
     docker:
       - image: circleci/node:8.9.4
+    working_directory: ~/ci-test
     steps:
       - checkout
       - restore_cache:
