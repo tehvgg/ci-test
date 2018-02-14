@@ -24,7 +24,7 @@ jobs:
           paths:
             - node_modules/
             - build/
-          key: build-cache-{{ .BuildNum }}
+          key: build-cache-{{ .Revision }}
   test:
     docker:
       - image: circleci/node:8.9.4
@@ -32,7 +32,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: build-cache-{{ .BuildNum }}
+          key: build-cache-{{ .Revision }}
       - run: yarn test
       - store_artifacts:
           path: tests/coverage/
