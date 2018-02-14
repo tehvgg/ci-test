@@ -1,4 +1,4 @@
-import Test from "../../index";
+import Test from "../../build/index";
 
 let t;
 

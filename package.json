@@ -4,10 +4,10 @@
 	"description": "Testing Continuous Integration initiatives",
 	"main": "index.js",
 	"scripts": {
-		"precommit": "precise-commits --whitelist \"*.js\"",
+		"precommit": "precise-commits --whitelist *.js",
 		"test": "jest -c jest.config.js",
 		"build": "rollup -c rollup.config.js",
-		"lint": "prettier --config prettier.config.js"
+		"lint": "prettier *.js src/**/*.js --config prettier.config.js "
 	},
 	"repository": {
 		"type": "git",
@@ -22,11 +22,13 @@
 	"devDependencies": {
 		"babel-core": "^6.26.0",
 		"babel-jest": "^22.2.2",
+		"babel-plugin-external-helpers": "^6.22.0",
 		"babel-preset-env": "^1.6.1",
 		"husky": "^0.14.3",
 		"jest": "^22.3.0",
 		"precise-commits": "^1.0.1",
 		"prettier": "^1.10.2",
-		"rollup": "^0.55.5"
+		"rollup": "^0.55.5",
+		"rollup-plugin-babel": "^3.0.3"
 	}
 }
