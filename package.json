@@ -12,10 +12,6 @@
     ],
     "collectCoverage": true,
     "coverageDirectory": "./tests/coverage/",
-    "coverageReporters": [
-      "html",
-      "text"
-    ],
     "coverageThreshold": {
       "global": {
         "branches": 90,
