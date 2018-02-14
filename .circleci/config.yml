@@ -1,44 +1,61 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
+	install:
+		docker:
+			- image: circleci/node:8.9.4
+		steps:
+			- checkout
+			- run: yarn install
+			- save_cache:
+					paths:
+						- node_modules/
+					key: dependency-cache-{{ checksum "package.json" }}
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/node:8.9.4
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/ci-test
-
     steps:
       - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
+			- restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run: yarn install
-
+      - run: yarn run build
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
+            - node_modules/
+						- build/
+          key: build-cache-{{ checksum "package.json" }}
+  test:
+    docker:
+      - image: circleci/node:8.9.4
+    steps:
+      - checkout
+      - restore_cache:
+          key: build-cache-{{ checksum "package.json" }}
       - run: yarn test
-
       - store_artifacts:
           path: tests/coverage/
-
       # duplicate of store_artifacts because circle 2.0 doesn't seem to support this option fully yet for html coverage
       - store_test_results:
           path: tests/coverage/
+	lint:
+		docker:
+			- image: circleci/node:8.9.4
+		steps:
+			- checkout
+			- restore_cache:
+					key: dependency-cache-{{ checksum "package.json" }}
+			- run: yarn run lint --debug-check --list-different
+workflows:
+	version: 2
+	build-test-lint:
+		jobs:
+			- install
+			- build:
+				requires:
+					- install
+			- lint:
+				requires:
+					- install
+			- test:
+				requires:
+					- build
