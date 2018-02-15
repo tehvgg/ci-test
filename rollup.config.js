@@ -5,6 +5,7 @@ module.exports = {
 		format: "cjs",
 		file: "./build/index.js",
 		name: "test",
-		exports: "default"
+		exports: "default",
+		sourcemap: true
 	}
 };

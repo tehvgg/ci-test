@@ -1,10 +1,16 @@
 'use strict';
 
+function foo() {
+	console.log("my name is foo");
+}
+
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 };
+
+foo();
 
 var Test = function () {
 	function Test(a, b) {
@@ -38,3 +44,4 @@ var Test = function () {
 }();
 
 module.exports = Test;
+//# sourceMappingURL=index.js.map
