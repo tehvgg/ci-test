@@ -1,16 +1,5 @@
 version: 2
 jobs:
-  install:
-    docker:
-      - image: circleci/node:8.9.4
-    working_directory: ~/ci-test
-    steps:
-      - checkout
-      - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules/
-          key: dependency-cache-{{ checksum "package.json" }}
   build:
     docker:
       - image: circleci/node:8.9.4
@@ -19,46 +8,24 @@ jobs:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      - run: yarn run build
+      - run:
+          name: Install dependencies
+          command: yarn install
       - save_cache:
           paths:
             - node_modules/
-            - build/
-          key: build-cache-{{ .Revision }}
-  test:
-    docker:
-      - image: circleci/node:8.9.4
-    working_directory: ~/ci-test
-    steps:
-      - checkout
-      - restore_cache:
-          key: build-cache-{{ .Revision }}
-      - run: yarn test
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Build lib
+          command: yarn run build
+      - run:
+          name: Test lib
+          command: yarn test
       - store_artifacts:
           path: tests/coverage/
       # duplicate of store_artifacts because circle 2.0 doesn't seem to support this option fully yet for html coverage
       - store_test_results:
           path: tests/coverage/
-  lint:
-    docker:
-      - image: circleci/node:8.9.4
-    working_directory: ~/ci-test
-    steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run: yarn run lint --debug-check --list-different
-workflows:
-  version: 2
-  build-test-lint:
-    jobs:
-      - install
-      - build:
-          requires:
-            - install
-      - lint:
-          requires:
-            - install
-      - test:
-          requires:
-            - build
+      - run:
+          name: Lint src
+          command: yarn run lint --debug-check --list-different
