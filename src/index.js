@@ -1,3 +1,7 @@
+import foo from "./foo";
+
+foo();
+
 export default class Test {
 	constructor(a, b) {
 		this.a = a;
