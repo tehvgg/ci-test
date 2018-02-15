@@ -8,7 +8,7 @@ describe("Test", () => {
 	});
 	test("multiplies", () => {
 		t = new Test(5, 10);
-		expect(t.multiply()).toBe(50);
+		expect(t.multiply()).toBe(45);
 	});
 	test("divides", () => {
 		t = new Test(5, 2);
