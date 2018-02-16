@@ -13,8 +13,7 @@
 		"linters": {
 			"*.js": ["eslint --fix", "git add"],
 			"*.scss": ["stylelint --syntax=scss", "git add"]
-		},
-		"ignore": ["build/**"]
+		}
 	},
 	"repository": {
 		"type": "git",
