@@ -4,13 +4,17 @@
 	"description": "Testing Continuous Integration initiatives",
 	"main": "build/index.js",
 	"scripts": {
-		"precommit": "lint-staged",
+		"precommit": "lint-staged --debug",
 		"test": "jest -c jest.config.js",
 		"build": "rollup -c rollup.config.js",
 		"lint": "eslint"
 	},
 	"lint-staged": {
-		"*.js": ["eslint --fix", "git add"]
+		"linters": {
+			"*.js": ["eslint --fix", "git add"],
+			"*.scss": ["stylelint --syntax=scss", "git add"]
+		},
+		"ignore": ["build/**"]
 	},
 	"repository": {
 		"type": "git",
