@@ -4,7 +4,7 @@
 	"description": "Testing Continuous Integration initiatives",
 	"main": "build/index.js",
 	"scripts": {
-		"precommit": "lint-staged --debug",
+		"precommit": "lint-staged",
 		"test": "jest -c jest.config.js",
 		"build": "rollup -c rollup.config.js",
 		"lint": "eslint"
