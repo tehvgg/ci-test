@@ -35,6 +35,7 @@
 		"no-useless-return": "error",
 		"wrap-iife": ["error", "outside"],
 		"yoda": ["error", "never", { "exceptRange": true }],
+		"no-unused-vars": "warn",
 		"no-label-var": "warn",
 		"array-bracket-newline": ["error", { "multiline": true }],
 		"array-bracket-spacing": ["error", "always", { "singleValue": false, "objectsInArrays": false, "arraysInArrays": false }],
