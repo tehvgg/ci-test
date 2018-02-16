@@ -3,23 +3,30 @@ import foo from "./foo";
 foo();
 
 export default class Test {
-	constructor(a, b) {
+
+	constructor (a, b) {
 		this.a = a;
 		this.b = b;
 	}
-	multiply() {
+
+	multiply () {
 		return this.a * this.b;
 	}
-	divide() {
+
+	divide () {
 		return this.a / this.b;
 	}
-	mod() {
+
+	mod () {
 		return this.a % this.b;
 	}
-	add() {
+
+	add () {
 		return this.a + this.b;
 	}
-	subtract() {
+
+	subtract () {
 		return this.a - this.b;
 	}
+
 }
