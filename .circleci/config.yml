@@ -4,6 +4,7 @@ jobs:
     docker:
       - image: circleci/node:8.9.4
     working_directory: ~/ci-test
+    parallelism: 4
     steps:
       - checkout
       - restore_cache:
@@ -23,9 +24,9 @@ jobs:
           command: yarn test
       - store_artifacts:
           path: tests/coverage/
-      # duplicate of store_artifacts because circle 2.0 doesn't seem to support this option fully yet for html coverage
-      - store_test_results:
-          path: tests/coverage/
+      # circle 2.0 doesn't seem to support this option fully yet for html coverage
+      #- store_test_results:
+          #path: tests/coverage/
       - run:
           name: Lint src
-          command: yarn run lint --debug-check --list-different
+          command: yarn run lint
