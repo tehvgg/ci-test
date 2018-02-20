@@ -1,3 +1,3 @@
 export default function foo () {
-	const foo = "bar";
+	// console.log("my name is foo");
 }
