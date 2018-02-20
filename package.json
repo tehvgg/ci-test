@@ -7,12 +7,15 @@
 		"precommit": "lint-staged",
 		"test": "jest -c jest.config.js",
 		"build": "rollup -c rollup.config.js",
-		"lint": "eslint src/**/*.js tests/spec/**/*.js"
+		"lint": "eslint src/**/*.js tests/spec/**/*.js",
+		"lint-write": "prettier-eslint {src,tests}/**/*.js --write --list-different"
 	},
 	"lint-staged": {
 		"linters": {
-			"*.js": ["eslint --fix", "git add"],
-			"*.scss": ["stylelint --syntax=scss", "git add"]
+			"{src,tests}/**/*.js": [
+				"npm run lint-write",
+				"git add"
+			]
 		}
 	},
 	"repository": {
@@ -34,6 +37,8 @@
 		"husky": "^0.14.3",
 		"jest": "^22.3.0",
 		"lint-staged": "^6.1.1",
+		"prettier": "^1.10.2",
+		"prettier-eslint-cli": "^4.7.1",
 		"rollup": "^0.55.5",
 		"rollup-plugin-babel": "^3.0.3"
 	}
