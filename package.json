@@ -5,9 +5,9 @@
 	"main": "build/index.js",
 	"scripts": {
 		"precommit": "lint-staged",
-		"test": "jest -c jest.config.js",
-		"build": "rollup -c rollup.config.js",
-		"lint-notify": "eslint *.js src/**/*.js tests/spec/**/*.js --color ",
+		"test": "jest -c",
+		"build": "rollup -c",
+		"lint-notify": "eslint *.js src/**/*.js tests/spec/**/*.js",
 		"lint-write": "prettier-eslint *.js --write"
 	},
 	"lint-staged": {
