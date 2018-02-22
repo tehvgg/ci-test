@@ -7,13 +7,14 @@
 		"precommit": "lint-staged",
 		"test": "jest -c jest.config.js",
 		"build": "rollup -c rollup.config.js",
-		"lint": "eslint src/**/*.js tests/spec/**/*.js",
-		"lint-write": "prettier-eslint {src,tests}/**/*.js --write --list-different"
+		"lint-notify": "eslint *.js src/**/*.js tests/spec/**/*.js --color ",
+		"lint-write": "prettier-eslint *.js --write"
 	},
 	"lint-staged": {
 		"linters": {
-			"{src,tests}/**/*.js": [
-				"npm run lint-write",
+			"*.js": [
+				"prettier-eslint --write",
+				"eslint",
 				"git add"
 			]
 		}

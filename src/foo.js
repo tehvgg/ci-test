@@ -1,3 +1,4 @@
 export default function foo () {
-	// console.log("my name is foo");
+	const test = 0;
+	setTimeout(() => test + 5);
 }

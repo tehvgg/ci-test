@@ -29,4 +29,4 @@ jobs:
           #path: tests/coverage/
       - run:
           name: Lint src
-          command: yarn run lint
+          command: yarn run lint-notify
